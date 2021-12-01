@@ -2128,6 +2128,7 @@ u64 get_random_u64(void)
 	u64 ret;
 	struct batched_entropy *batch;
 
+<<<<<<< HEAD
 #if BITS_PER_LONG == 64
 	if (arch_get_random_long((unsigned long *)&ret))
 		return ret;
@@ -2137,6 +2138,8 @@ u64 get_random_u64(void)
 	    return ret;
 #endif
 
+=======
+>>>>>>> e3bafe5269207a3522a9e97e08393f9b1417589d
 	batch = &get_cpu_var(batched_entropy_u64);
 	if (batch->position % ARRAY_SIZE(batch->entropy_u64) == 0) {
 		extract_crng((u8 *)batch->entropy_u64);
@@ -2153,9 +2156,6 @@ u32 get_random_u32(void)
 {
 	u32 ret;
 	struct batched_entropy *batch;
-
-	if (arch_get_random_int(&ret))
-		return ret;
 
 	batch = &get_cpu_var(batched_entropy_u32);
 	if (batch->position % ARRAY_SIZE(batch->entropy_u32) == 0) {
